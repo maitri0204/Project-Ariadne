@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Portfolio Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-moon" id="themeIcon"></i>
+        <span id="themeText">Dark Mode</span>
+    </button>
+
+    <div class="background-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>Education Portfolio Generator</h1>
+            </div>
+            <p class="subtitle">Create personalized career and development reports</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Input Form -->
+            <form id="portfolioForm">
+                <div class="card">
+                    <h2><i class="fas fa-user-circle"></i> Student Profile Information</h2>
+
+                    <div class="form-group">
+                        <label for="standard"><i class="fas fa-school"></i>Name of Student</label>
+                        <input
+                        type="text"
+                        id="sname"
+                        name="sname"
+                        class="text-input"
+                        placeholder="Enter full name"
+                        required
+                        />
+                    </div>
+                    <!-- Standard / Year -->
+                    <div class="form-group">
+                        <label for="standard"><i class="fas fa-school"></i> Standard / Year</label>
+                        <input
+                        type="text"
+                        id="standard"
+                        name="standard"
+                        class="text-input"
+                        placeholder="e.g., 8th, 10th, 12th, FY, SY, TY, 3rd Year BTech"
+                        required
+                        />
+                    </div>
+                    
+                    <!-- Board -->
+                    <div class="form-group">
+                        <label for="board"><i class="fas fa-book"></i> Board</label>
+                        <select id="board" name="board" class="select-input" required>
+                        <option value="" disabled selected>Select board</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="State Board">State Board</option>
+                        <option value="ICSE">ICSE</option>
+                        <option value="IB">IB</option>
+                        <option value="Cambridge/IGCSE">Cambridge/IGCSE</option>
+                        <option value="Other">Other</option>
+                        </select>
+                    </div>  
+                    
+                    <!-- Highest Skills -->
+                    <div class="form-group">
+                        <label><i class="fas fa-star"></i> Highest Skills (Select Multiple)</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Strategy" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Strategy</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Strategy" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Execution" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Execution</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Execution" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Intellect" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Intellect</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Intellect" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Asthetic" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Asthetic</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Asthetic" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Balance" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Balance</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Balance" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Movement" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Movement</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Movement" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Expression" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Expression</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Expression" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Articulation" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Articulation</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Articulation" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Observation" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Observation</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Observation" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="highest_skills" value="Ecological" onchange="togglePercentageInput(this, 'skill')">
+                                    <span>Ecological</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-skill-Ecological" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                        </div>                        
+                    </div>
+
+                    <!-- Thinking Pattern -->
+                    <div class="form-group">
+                        <label><i class="fas fa-brain"></i> Thinking Pattern (Select One):</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="thinking_pattern" value="Logical" required>
+                                <span>Logical</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="thinking_pattern" value="Emotional">
+                                <span>Emotional</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Style -->
+                    <div class="form-group">
+                        <label><i class="fas fa-trophy"></i> Achievement Style (Select Multiple)</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="achievement_style" value="Follower" onchange="togglePercentageInput(this, 'achievement')">
+                                    <span>Follower</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-achievement-Follower" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="achievement_style" value="Experimental" onchange="togglePercentageInput(this, 'achievement')">
+                                    <span>Experimental</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-achievement-Experimental" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="achievement_style" value="Different" onchange="togglePercentageInput(this, 'achievement')">
+                                    <span>Different</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-achievement-Different" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="achievement_style" value="Thoughtful" onchange="togglePercentageInput(this, 'achievement')">
+                                    <span>Thoughtful</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-achievement-Thoughtful" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                        </div>                        
+                    </div>
+
+                    <!-- Learning & Communication Style -->
+                    <div class="form-group">
+                        <label><i class="fas fa-comments"></i> Learning & Communication Style (Select Multiple)</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="learning_communication_style" value="Visual Learner" onchange="togglePercentageInput(this, 'learning')">
+                                    <span>Visual Learner</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-learning-Visual Learner" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="learning_communication_style" value="Auditory Learner" onchange="togglePercentageInput(this, 'learning')">
+                                    <span>Auditory Learner</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-learning-Auditory Learner" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="learning_communication_style" value="Physical Learner" onchange="togglePercentageInput(this, 'learning')">
+                                    <span>Physical Learner</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-learning-Physical Learner" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                        </div>                        
+                    </div>
+
+                    <!-- Quotients -->
+                    <div class="form-group">
+                        <label><i class="fas fa-chart-line"></i> Quotients (Select Multiple)</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="quotients" value="IQ (Intelligence Quotient)" onchange="togglePercentageInput(this, 'quotient')">
+                                    <span>IQ (Intelligence Quotient)</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-quotient-IQ (Intelligence Quotient)" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="quotients" value="EQ (Emotional Quotient)" onchange="togglePercentageInput(this, 'quotient')">
+                                    <span>EQ (Emotional Quotient)</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-quotient-EQ (Emotional Quotient)" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="quotients" value="AQ (Adversity Quotient)" onchange="togglePercentageInput(this, 'quotient')">
+                                    <span>AQ (Adversity Quotient)</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-quotient-AQ (Adversity Quotient)" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="quotients" value="VQ (Visionary Quotient)" onchange="togglePercentageInput(this, 'quotient')">
+                                    <span>VQ (Visionary Quotient)</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-quotient-VQ (Visionary Quotient)" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                            <label class="checkbox-label">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" name="quotients" value="CQ (Creativity Quotient)" onchange="togglePercentageInput(this, 'quotient')">
+                                    <span>CQ (Creativity Quotient)</span>
+                                </div>
+                                <input type="number" class="percentage-input" id="percentage-quotient-CQ (Creativity Quotient)" placeholder="Enter %" min="0" max="100" step="0.1" oninput="if(this.value > 100) this.value = 100; if(this.value < 0) this.value = 0;" style="display:none;">
+                            </label>
+                        </div>                        
+                    </div>
+
+                    <!-- Personality Type -->
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tag"></i> Personality Type (Select One):</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="personality_type" value="Decisive" required>
+                                <span>Decisive</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="personality_type" value="Expressive">
+                                <span>Expressive</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="personality_type" value="Supportive">
+                                <span>Supportive</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="personality_type" value="Rule-Conscious">
+                                <span>Rule-Conscious</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Career Roles -->
+                    <div class="form-group">
+                        <label for="careerRoles"><i class="fas fa-briefcase"></i> Suggested Career Roles:</label>
+                        <textarea id="careerRoles" name="career_roles" rows="4" placeholder="Enter your career interests or roles (e.g., Software Engineer, Data Scientist, Product Manager)"></textarea>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-container">
+                    <button type="button" class="btn btn-primary" onclick="generateReport('career')">
+                        <i class="fas fa-briefcase"></i>
+                        Generate Career Report
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="generateReport('development')">
+                        <i class="fas fa-chart-line"></i>
+                        Generate Development Report
+                    </button>
+                </div>
+            </form>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Generating your personalized report...</p>
+            </div>
+
+            <!-- Report Display Section -->
+            <div id="reportSection" class="card report-section" style="display: none;">
+                <h2><i class="fas fa-file-alt"></i> Generated Report</h2>
+                <div id="reportContent" class="report-content"></div>
+                <button id="downloadBtn" class="btn btn-success">
+                    <i class="fas fa-download"></i>
+                    Download Report (Word)
+                </button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p></p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
