@@ -1,7 +1,7 @@
 # Ariadne
 
 <p align="center">
-  <img src="ariadne-banner.png" alt="Ariadne Project Banner" width="100%">
+  <img src="ariadne.png" alt="Ariadne Project Banner" width="100%">
 </p>
 
 ## Project Overview
